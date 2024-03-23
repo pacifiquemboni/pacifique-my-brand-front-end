@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> My-Brand</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="validate.js"></script>
+    <script src="addblog.js"></script>
+  </head>
+  <body onload="CheckLoggedInUser() && runAnimations() ">
+    <div class="mobile-navbar" id="mobile-navbar">
+      <div class="logo">A<span>T</span>C<span>.</span></div>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="mobile-menu" id="mobileMenu">
+        <li>
+          <a href=""><span class="active">Home</span></a>
+        </li>
+        <li><a href="about.html">AboutMe</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="mywork.html">MyWork</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li id="login"><a href="login.html">Login</a></li>
+        <div
+          id="userdashboard"
+          style="display: none; color: #fea609"
+          onclick="logout()"
+        >
+          Logout
+          <img
+            width="10"
+            height="10"
+            src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+            alt="logout-rounded"
+          />
+        </div>
+      </ul>
+      <div id="dashboard" style="display: none" onclick="navigateToDashboard()">
+        Admin Dashboard
+      </div>
+      <a href="contact.html"><button>Contact me</button></a>
+    </div>
+    <script src="login.js"></script>
+    <div class="body">
+      <script>
+        function toggleMenu() {
+          var mobileMenu = document.getElementById("mobileMenu");
+          mobileMenu.classList.toggle("show");
+        }
+      </script>
+
+      <div class="main-div">
+        <div class="left-content">
+          <h3>Hello There</h3>
+          <p class="left-p1">
+            The best web applications & mobile apps are made by me.
+          </p>
+          <p class="left-p2">
+            Are You Looking For a Software Engineer Who Can Help You Grow your
+            business? Let’s Shake Hands!.
+          </p>
+
+          <a href=""
+            ><button>
+              <i class="fa fa-download"></i>
+              Download cv
+            </button></a
+          >
+          <a href="#contact-div">
+            <button>
+              Hire Me
+            </button>
+          </a>
+          
+          <br /><br />
+          <div class="social">
+            <a href="https://github.com/pacifiquemboni" target="_blank"
+              ><img src="images/social/github.png"
+            /></a>
+            <a href="mailto:pacifiquemboni@gmail.com" target="_blank"
+              ><img src="images/social/gmail.png"
+            /></a>
+            <a href="https://web.facebook.com/pacifique.mbonimana.7/"><img src="images/social/facebook.png" /></a>
+            
+            <a href="https://discord.gg/3k7hrx47" target="_blank"><img src="images/social/discord.png" /></a>
+            
+
+            <a
+              href="https://www.linkedin.com/in/mbonimnana-pacifique-514004188"
+              target="_blank"
+              ><img src="images/social/linkedin.png"
+            /></a>
+          </div>
+        </div>
+        <div class="right-image">
+          <img src="images/image.png" />
+        </div>
+      </div>
+      <hr />
+      <!-- about section -->
+      <div class="about-body-div">
+        <div class="about-img-div">
+          <img src="images/me.jpg" />
+        </div>
+        <div class="about-content-div">
+          <h2>About Me</h2>
+          <p class="about-p1">The Best Design And Development Services</p>
+          <p class="about-p2">BACK-END DEVELOPER | FRONT-END DEVELOPER</p>
+          <div class="experience">
+            <div class="vl"></div>
+            <div class="clients">
+              <h3><span class="countup">100</span> +</h3>
+
+              <p class="client-p">Happy clients</p>
+            </div>
+
+            <div class="vl"></div>
+            <div class="clients">
+              <h3><span class="countup">2</span> +</h3>
+
+              <p>Years of experience</p>
+            </div>
+            <div class="vl"></div>
+          </div>
+          <a href="about.html"><button>Read more</button></a>
+        </div>
+      </div>
+      <hr />
+      <!-- skils section -->
+      <div class="skills-div">
+        <center><h1>My Skills</h1></center>
+        <div class="skills-body">
+          <div class="left-skills">
+            <div class="skill-design">
+              <i
+                class="fa fa-paint-brush"
+                style="font-size: 36px; color: #fea609"
+              ></i>
+              <div class="skill-design-content">
+                <h2>Design + Development</h2>
+                <p>
+                  Clean, modern designs - optimized for performance, search
+                  engines, and converting users to customers.
+                </p>
+              </div>
+            </div>
+            <div class="skill-design">
+              <i
+                class="fas fa-code"
+                style="font-size: 36px; color: #fea609"
+              ></i>
+              <div class="skill-design-content">
+                <h2>Technology</h2>
+                <p>
+                  Combined all the latest technologies to a progressive website.
+                </p>
+              </div>
+            </div>
+            <div class="skill-design">
+              <i class="material-icons" style="font-size: 36px; color: #fea609"
+                >&#xe331;</i
+              >
+              <div class="skill-design-content">
+                <h2>Always Resposnive</h2>
+                <p>
+                  A responsive design makes your website accessible to all
+                  users, regardless of their device.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="right-skills">
+            <div class="html">
+              <div class="html5">
+                <div class="html5-cont">HTML 5</div>
+              </div>
+              <p>70%</p>
+            </div>
+            <div class="html">
+              <div class="css3">
+                <div class="css3-cont">CSS 3</div>
+              </div>
+              <p>55%</p>
+            </div>
+            <div class="html">
+              <div class="jquery">
+                <div class="jquery-cont">jQuery</div>
+              </div>
+              <p>50%</p>
+            </div>
+            <div class="html">
+              <div class="php">
+                <div class="php-cont">PHP</div>
+              </div>
+              <p>40%</p>
+            </div>
+            <div class="html">
+              <div class="wordpress">
+                <div class="wordpress-cont">WORDPRESS</div>
+              </div>
+              <p>75%</p>
+            </div>
+            <div class="html">
+              <div class="seo">
+                <div class="seo-cont">SEO</div>
+                <p>100%</p>
+              </div>
+            </div>
+            <div class="html">
+              <div class="ps">
+                <div class="ps-cont">PhotoShop</div>
+              </div>
+              <p>70%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- blog section -->
+      <!-- <div class="blog-div">
+        <div class="blog-body">
+          <center><h1>Blogs</h1></center>
+          <div class="myblog-div">
+            <div class="blogs myblogs" id="myblogs">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <br /><br /><br /> -->
+      <hr />
+      <center><h1>Clients’ Experience</h1></center>
+      <div class="slideshow-container">
+        <div class="mySlides fade">
+          <div class="comments">
+            <div class="comment">
+              <div class="top">
+                <div class="img">
+                  <img src="images/comment/conso.jpg" />
+                </div>
+                <div>
+                  <h3>Consolee Musanabera</h3>
+                  <p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </p>
+                </div>
+                <h1>’’</h1>
+              </div>
+
+              <p>
+                thank you for your exceptional work on our software project.
+                Your expertise shines through, and the final product exceeds our
+                expectations. Great job!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="comments">
+            <div class="comment">
+              <div class="top">
+                <div class="img">
+                  <img src="images/comment/facy.jpg" />
+                </div>
+                <div>
+                  <h3>Brendah Facy</h3>
+                  <p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </p>
+                </div>
+                <h1>’’</h1>
+              </div>
+
+              <p>
+                A big thank you for your hard work and innovation on our
+                software development project. Your commitment to excellence
+                truly made a difference, and the results speak for themselves.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="comments">
+            <div class="comment">
+              <div class="top">
+                <div class="img">
+                  <img src="images/comment/sando.jpg" />
+                </div>
+                <div>
+                  <h3>Mukamuhire Sandrine</h3>
+                  <p>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                  </p>
+                </div>
+                <h1>’’</h1>
+              </div>
+
+              <p>
+                I wanted to express my gratitude for your outstanding
+                contributions to our recent software updates. Clients are
+                thrilled, and it's all thanks to your dedication. Well done!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+      </div>
+      <br />
+
+      <div style="text-align: center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+
+      <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+          showSlides((slideIndex += n));
+        }
+
+        function currentSlide(n) {
+          showSlides((slideIndex = n));
+        }
+
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {
+            slideIndex = 1;
+          }
+          if (n < 1) {
+            slideIndex = slides.length;
+          }
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" activeslide", "");
+          }
+          slides[slideIndex - 1].style.display = "block";
+          dots[slideIndex - 1].className += " activeslide";
+        }
+      </script>
+      <hr />
+      <center><h1>Subscribe To Our News Letters</h1></center>
+      <script src="https://smtpjs.com/v3/smtp.js"></script>
+      <div class="subscribe">
+        <div class="sub-left">
+          <img src="images/sub.jpg" alt="" />
+        </div>
+        <div class="sub-right">
+          <h1>SUBCRIBE !</h1>
+          <div id="toastNotification" class="toast hidden"></div>
+
+          <form action="#" id="form">
+            <div id="loader" class="loader"></div>
+            <input type="text" id="name" placeholder="Name" />
+            <input type="email" id="useremail" placeholder="Your Email" />
+            <!-- <input type="submit"  /> -->
+            <button type="button" onclick="submitForm()">Subscribe</button>
+          </form>
+          <script>
+            function submitForm() {
+              // Show loader
+              document.getElementById("loader").style.display = "block";
+
+              const names = document.getElementById("name").value;
+              const email = document.getElementById("useremail").value;
+              showToast("subscribing ......")
+              // Example: Sending data to the server using Fetch API
+              fetch(
+                
+                "https://pacifique-mybrand-endpoints.onrender.com/subscribe",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ names, email }),
+                }
+              )
+                .then((response) => {
+                  // Hide loader
+                  document.getElementById("loader").style.display = "none";
+
+                  if (response.ok) {
+                    return response.json();
+                  } else {
+                    throw new Error("Email already exists"); // Throw an error if email already exists
+                  }
+                })
+                .then((data) => {
+                  console.log("Data sent successfully:", data);
+                  // You can add further actions or UI updates here
+                  showToast("Thank you for subscribing to our site");
+                  resetForm();
+                })
+                .catch((error) => {
+                  console.error("Error sending data:", error.message); // Log the error message
+                  showToast(error.message, "error"); // Show error message in toast
+                });
+            }
+
+            function showToast(message, type = "success", duration = 3000) {
+              const toast = document.getElementById("toastNotification");
+              toast.textContent = message;
+              toast.classList.add("show", type); // Add 'type' class for styling
+              setTimeout(() => {
+                toast.classList.remove("show", type);
+              }, duration);
+            }
+
+            function resetForm() {
+              document.getElementById("form").reset(); // Reset the form
+            }
+          </script>
+        </div>
+      </div>
+      <!-- <script>
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("useremail");
+
+        const submit = document.getElementById("form");
+
+        submit.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const name = nameInput.value;
+          const email = emailInput.value;
+
+          // Validate email address
+          if (!isValidEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+          }
+          let msg =
+            "Thank you for subscribing! 🌟 We're thrilled to have you on board. Stay tuned for exciting updates and exclusive content. Your support means the world to us! 🚀✨<hr>";
+          let body = msg + "<br>Thanks Again: " + name;
+          Email.send({
+            SecureToken: "8e8cba10-27bc-45df-8058-ab79bf9ea8e4",
+            To: email,
+            From: "pacifiquemboni@gmail.com",
+            Subject: "Stay Connected: ATC's Monthly Newsletter",
+            Body: body,
+          }).then((message) => alert(message));
+        });
+
+        // Simple email validation function (replace it with your own validation logic)
+        function isValidEmail(email) {
+          // Regular expression for a simple email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+      </script> -->
+      <!-- contact us -->
+      <div class="contact-div" id="contact-div">
+        <div class="address">
+          <i class="material-icons checked">&#xe55f;</i>
+          <h2>ADDRESS</h2>
+          <p>+250,KIAGALI CITY, NYARUGENGE</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="phone-num">
+          <i class="material-icons checked">&#xe551;</i>
+          <h2>PHONE NUMBER</h2>
+          <p>+250787299001, +250729981083</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="email">
+          <i class="material-icons checked">&#xe554;</i>
+          <h2>EMAIL-ADDRESS</h2>
+          <p>pacifiquemboni@gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-body">
+        <hr />
+        <h1>2024 pacifiquemboni. All Rights Reserved</h1>
+      </div>
+    </div>
+    <script>
+      // fixing header
+      window.onscroll = function () {
+        myFunction();
+      };
+
+      var header = document.getElementById("mobile-navbar");
+      var navbar = document.getElementById("mobilemenu");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+  </body>
+</html>

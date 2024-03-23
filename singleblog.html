@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>single-blog</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="validate.js"></script>
+    <!-- <script src="addcomment.js"></script> -->
+    <!-- <script src="addblog.js"></script> -->
+  </head>
+  <body onload="fetchcomments() && fetchLikes() && CheckLoggedInUser()">
+    <div class="mobile-navbar" id="mobile-navbar">
+      <div class="logo">A<span>T</span>C<span>.</span></div>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">AboutMe</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="mywork.html">MyWork</a></li>
+        <li class="active"><a href="blogs.html">Blogs</a></li>
+        <li id="login"><a href="login.html">Login</a></li>
+        <div
+          id="userdashboard"
+          style="display: none; color: #fea609"
+          onclick="logout()"
+        >
+          Logout
+          <img
+            width="10"
+            height="10"
+            src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+            alt="logout-rounded"
+          />
+        </div>
+      </ul>
+      <div id="dashboard" style="display: none" onclick="navigateToDashboard()">
+        Admin Dashboard
+      </div>
+      <a href="contact.html"
+        ><button><span>Contact me</span></button></a
+      >
+    </div>
+    <script src="login.js"></script>
+    <script>
+      function toggleMenu() {
+        var mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("show");
+      }
+    </script>
+    <script src="singleblog.js"></script>
+    <div class="body">
+      <div class="single-blog">
+        <h1 id="title"></h1>
+
+        <div id="blog-Image"></div>
+        <!-- <img src="images/blog/node.png" alt="" /> -->
+        <h2>Blogs > <span id="title2" class="active"></span></h2>
+
+        <h1>By : <span id="blog-author"></span></h1>
+
+        <strong><div id="blogIntro"></div></strong>
+        <br /><br />
+        <div id="blogbody"></div>
+        <div class="blog-footer">
+          <div class="like">
+            <button type="button">
+              <i class="fa fa-comment"></i>
+            </button>
+
+            <p>Comment(<span id="count"></span>)</p>
+          </div>
+
+          <div class="like">
+            <form id="likeform">
+              <input type="text" id="blogid" hidden />
+              <button type="button" id="like-button">
+                <i class="fa fa-thumbs-up"></i>
+              </button>
+            </form>
+            <p id="likes-count" hidden></p>
+            <p>likes(<span id="countlike"></span>)</p>
+          </div>
+          <script>
+            let isLiked = false; // Initial state of the like button
+
+            // Function to toggle the like status and update UI
+            const toggleLike = async () => {
+              isLiked = !isLiked; // Toggle the like status
+              const blogId = document.getElementById("blogid").value;
+
+              try {
+                const response = await fetch(
+                  "https://pacifique-mybrand-endpoints.onrender.com/like",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ blogId, isLiked }),
+                  }
+                );
+
+                if (!response.ok) {
+                  throw new Error("Failed to update like status");
+                }
+
+                const responseData = await response.json();
+                console.log(responseData.message); // Log the success message from the server
+              } catch (error) {
+                console.error("Error updating like status:", error);
+                // Handle errors here
+              }
+
+              // Update UI based on the like status
+              const likeButton = document.getElementById("like-button");
+              const likesCountElement = document.getElementById("likes-count");
+
+              if (isLiked) {
+                likeButton.classList.add("liked"); // Add a class to indicate liking
+                likesCountElement.textContent = "Liked"; // Update like count text
+              } else {
+                likeButton.classList.remove("liked"); // Remove the class for unliking
+                likesCountElement.textContent = "Like"; // Update like count text
+              }
+            };
+
+            // Event listener for the like button click
+            document
+              .getElementById("like-button")
+              .addEventListener("click", () => {
+                toggleLike(); // Toggle the like status and update backend
+              });
+          </script>
+
+          <!-- <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const likeButton = document.querySelector("#like-button");
+              const likesCountElement = document.querySelector("#likes-count");
+
+              // Get the current blog ID from the URL
+              let urlParams = new URLSearchParams(window.location.search);
+              const blogId = parseInt(urlParams.get("id"));
+
+              // Load existing likes from local storage
+              let storedLikes =
+                JSON.parse(localStorage.getItem("blogLikes")) || {};
+              let isLiked = storedLikes[blogId] || false;
+
+              displayLikes(isLiked ? 1 : 0);
+
+              likeButton.addEventListener("click", function () {
+                // Toggle like status
+                isLiked = !isLiked;
+
+                // Update likes count based on the toggle
+                const likesCount = isLiked ? 1 : 0;
+
+                // Save updated likes to local storage
+                storedLikes[blogId] = isLiked;
+                localStorage.setItem("blogLikes", JSON.stringify(storedLikes));
+
+                // Display updated likes count
+                displayLikes(likesCount);
+              });
+
+              function displayLikes(count) {
+                likesCountElement.textContent = `${count} Likes`;
+              }
+            });
+          </script> -->
+        </div>
+        <hr />
+        <div class="blogcomment">
+          <div id="toastNotification" class="toast hidden"></div>
+          <form id="comment-form" class="formcomment">
+            <input type="text" hidden id="blogid" placeholder="blogId" />
+            <input type="text" id="name" placeholder="Names" />
+            <textarea
+              name=""
+              id="blogcomment"
+              placeholder="Write your comment"
+            ></textarea>
+            <button type="submit">Submit Comment</button>
+          </form>
+          <fieldset>
+            <legend>Comments:</legend>
+            <div id="comments-list"></div>
+          </fieldset>
+        </div>
+      </div>
+      <script>
+        const addComment = async (comment) => {
+          try {
+            const token = localStorage.getItem("token");
+            if (!token) {
+              throw new Error("Token not found in localStorage");
+            }
+
+            // Make a POST request to add the comment
+            const response = await fetch(
+              `https://pacifique-mybrand-endpoints.onrender.com/comment`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(comment),
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error("Failed to add comment");
+            }
+
+            showToast("good! comment added successfully", "success");
+            resetForm();
+          } catch (error) {
+            console.error(error);
+            // Handle errors here
+          }
+        };
+
+        document
+          .getElementById("comment-form")
+          .addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            // Extract the new comment from the input field
+            const comment = document.getElementById("blogcomment").value;
+            const blogid = document.getElementById("blogid").value;
+            const names = document.getElementById("name").value;
+            const newcomment = {
+              blogid: blogid,
+              names: names,
+              comment: comment,
+            };
+            await addComment(newcomment);
+          });
+        function showToast(message, type = "success", duration = 3000) {
+          const toast = document.getElementById("toastNotification");
+          toast.textContent = message;
+          toast.classList.add("show", type); // Add 'type' class for styling
+          setTimeout(() => {
+            toast.classList.remove("show", type);
+          }, duration);
+        }
+        function resetForm() {
+          document.getElementById("comment-form").reset(); // Reset the form
+        }
+      </script>
+      <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const commentForm = document.querySelector("#comment-form");
+          const commentsList = document.querySelector("#comments-list");
+      
+          // Get the current blog ID from the URL
+          let urlParams = new URLSearchParams(window.location.search);
+          const blogId = parseInt(urlParams.get("id"));
+      
+          // Load existing comments from the server
+          displayComments();
+      
+          commentForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+      
+            // Get input values
+            const commentInput = document.querySelector("#blogcomment");
+      
+            // Create a new comment object
+            const newComment = {
+              message: commentInput.value,
+              time: getCurrentTime(),
+            };
+      
+            // Clear input field
+            commentInput.value = "";
+      
+            // Add comment to backend
+            await addComment(newComment);
+      
+            // Reload comments from the server
+            displayComments();
+          });
+      
+          async function displayComments() {
+            try {
+              // Fetch comments from the server
+              const response = await fetch(`/blogs/${blogId}/comments`);
+              if (!response.ok) {
+                throw new Error('Failed to fetch comments');
+              }
+              const comments = await response.json();
+      
+              // Clear existing comments
+              commentsList.innerHTML = "";
+      
+              // Display each comment
+              comments.forEach((comment) => {
+                const commentElement = document.createElement("div");
+                commentElement.classList.add("comment-results");
+      
+                commentElement.innerHTML = `
+                  <div class="comment-profile">
+                    <img src="images/profile/mucyo.png" alt="" />
+                  </div>
+                  <div class="comment-message">${comment.message}</div>
+                  <div class="comment-like"></div>
+                  <div class="comment-reply"><h1></h1></div>
+                  <div class="comment-time">${comment.time}</div>
+                `;
+      
+                commentsList.appendChild(commentElement);
+              });
+            } catch (error) {
+              console.log(error);
+            }
+          }
+      
+          function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, "0");
+            const minutes = now.getMinutes().toString().padStart(2, "0");
+            return `${hours}:${minutes}`;
+          }
+      
+          async function addComment(comment) {
+            try {
+              const token = localStorage.getItem("token");
+              if (!token) {
+                throw new Error("Token not found in localStorage");
+              }
+      
+              // Make a POST request to add the comment
+              const response = await fetch(`https://pacifique-mybrand-endpoints.onrender.com/blogs/${blogId}/comments`, {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(comment),
+              });
+      
+              if (!response.ok) {
+                throw new Error("Failed to add comment");
+              }
+            } catch (error) {
+              console.error(error);
+              // Handle errors here
+            }
+          }
+        });
+      </script>
+       -->
+
+      <!-- <script>
+        var file = document.getElementById("blog-Image");
+        var author = document.getElementById("blog-author");
+        var blogbody = document.getElementById("blogbody");
+        let urlParams = new URLSearchParams(window.location.search);
+        const id = parseInt(urlParams.get("id"));
+
+        document.addEventListener("DOMContentLoaded", () => {
+          let data = JSON.parse(localStorage.getItem("object"));
+
+          let targetBlog = data.find((blog) => {
+            return blog.id === id;
+          });
+          document.getElementById("title").innerHTML = targetBlog.title;
+          document.getElementById("title2").innerHTML = targetBlog.title;
+          var img = new Image();
+          img.src = targetBlog.file;
+          img.alt = "Blog Image";
+          file.appendChild(img);
+
+          author.innerHTML = targetBlog.author;
+          blogbody.innerHTML = targetBlog.body;
+        });
+
+      </script> -->
+      <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const commentForm = document.querySelector("#comment-form");
+          const commentsList = document.querySelector("#comments-list");
+
+          // Get the current blog ID from the URL
+          let urlParams = new URLSearchParams(window.location.search);
+          const blogId = parseInt(urlParams.get("id"));
+
+          // Load existing comments from local storage
+          const storedComments =
+            JSON.parse(localStorage.getItem("blogComments")) || {};
+          displayComments(storedComments[blogId] || []);
+
+          commentForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get input values
+            const nameInput = document.querySelector("#name");
+            const emailInput = document.querySelector("#email");
+            const commentInput = document.querySelector("#blogcomment");
+
+            // Create a new comment object
+            const newComment = {
+              name: nameInput.value,
+              email: emailInput.value,
+              message: commentInput.value,
+              time: getCurrentTime(),
+            };
+
+            // Save the new comment to local storage
+            storedComments[blogId] = storedComments[blogId] || [];
+            storedComments[blogId].push(newComment);
+            localStorage.setItem(
+              "blogComments",
+              JSON.stringify(storedComments)
+            );
+
+            // Display comments
+            displayComments(storedComments[blogId]);
+
+            // Clear input fields
+            nameInput.value = "";
+            emailInput.value = "";
+            commentInput.value = "";
+          });
+
+          function displayComments(comments) {
+            // Clear existing comments
+            commentsList.innerHTML = "";
+
+            // Display each comment
+            comments.forEach((comment) => {
+              const commentElement = document.createElement("div");
+              commentElement.classList.add("comment-results");
+
+              commentElement.innerHTML = `
+                <div class="comment-profile">
+                  <img src="images/profile/mucyo.png" alt="" />
+                </div>
+                <div class="comment-name">${comment.name}</div>
+                <div class="comment-message">${comment.message}</div>
+                <div class="comment-like"></div>
+                <div class="comment-reply"><h1></h1></div>
+                <div class="comment-time">${comment.time}</div>
+              `;
+
+              commentsList.appendChild(commentElement);
+            });
+          }
+
+          function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, "0");
+            const minutes = now.getMinutes().toString().padStart(2, "0");
+            return `${hours}:${minutes}`;
+          }
+        });
+      </script> -->
+      <!-- contact us -->
+      <div class="contact-div">
+        <div class="address">
+          <i class="material-icons checked">&#xe55f;</i>
+          <h2>ADDRESS</h2>
+          <p>+250,KIAGALI CITY, NYARUGENGE</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="phone-num">
+          <i class="material-icons checked">&#xe551;</i>
+          <h2>PHONE NUMBER</h2>
+          <p>+250787299001, +250729981083</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="email">
+          <i class="material-icons checked">&#xe554;</i>
+          <h2>EMAIL-ADDRESS</h2>
+          <p>pacifiquemboni@gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-body">
+        <br />
+        <hr />
+        <h1>2024 pacifiquemboni. All Rights Reserved</h1>
+        <div class="social-footer">
+          <img src="images/social/github.png" />
+          <img src="images/social/gmail.png" />
+          <img src="images/social/facebook.png" />
+          <img src="images/social/discord.png" />
+          <img src="images/social/linkedin.png" />
+        </div>
+      </div>
+    </div>
+    <script>
+      // fixing header
+      window.onscroll = function () {
+        myFunction();
+      };
+
+      var header = document.getElementById("mobile-navbar");
+      var navbar = document.getElementById("mobilemenu");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+  </body>
+</html>

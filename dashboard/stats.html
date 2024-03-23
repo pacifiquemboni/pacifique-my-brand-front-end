@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="dashcss.css" />
+    <!-- <link rel="stylesheet" href="./responsive.css" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <title>Statistics</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="validate.js"></script>
+  <body onload="runAnimations()">
+    <header>
+      <input type="checkbox" name="" id="check" />
+      <label for="check">
+        <img src="./bar.png" alt="" id="menubtn" style="width: 50px" />
+        <img src="./x.png" alt="" id="menucancel" style="width: 20px" />
+      </label>
+      <div class="sidebar">
+        <header>Dashboard</header>
+        <ul>
+          <li >
+            <a href="dashaddblog.html"
+              ><img
+                width="64"
+                height="64"
+                src="https://img.icons8.com/hatch/64/FFFFFF/add.png"
+                alt="add"
+              />
+              New Blog</a
+            >
+          </li>
+          <li>
+            <a href="projectspage.html"
+              ><img
+                width="24"
+                height="24"
+                src="https://img.icons8.com/material/24/FFFFFF/view-quilt.png"
+                alt="view-quilt"
+              />
+              Projects</a
+            >
+          </li>
+          <li class="active">
+            <a href="stats.html"
+              ><img
+                width="32"
+                height="32"
+                src="https://img.icons8.com/external-anggara-glyph-anggara-putra/32/FFFFFF/external-statistic-user-interface-anggara-glyph-anggara-putra.png"
+                alt="external-statistic-user-interface-anggara-glyph-anggara-putra"
+              />
+              Statatistics</a
+            >
+          </li>
+          <li>
+            <a href="users.html"
+              ><img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/pulsar-line/48/FFFFFF/group.png"
+                alt="group"
+              />Users</a
+            >
+          </li>
+          <li>
+            <a href="messages.html"
+              ><img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/FFFFFF/message-group.png"
+                alt="message-group"
+              />
+              Messages</a
+            >
+          </li>
+          <li>
+            <a href="../index.html"
+              ><img
+                width="26"
+                height="26"
+                src="https://img.icons8.com/metro/26/FFFFFF/home.png"
+                alt="home"
+              />Home</a
+            >
+          </li>
+        </ul>
+        <li>
+          <a href="#" class="logout" onclick="logout()">
+            <img
+              width="50"
+              height="50"
+              src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+              alt="logout-rounded"
+            />
+            <span class="nav-item">logout</span>
+          </a>
+        </li>
+      </div>
+    </header>
+    <script>
+      const logout = () => {
+        // Clear the authentication token from local storage
+        localStorage.removeItem("token");
+          localStorage.removeItem("Role");
+        // Redirect the user to the login page or update UI to reflect logged out state
+        // For example, you can redirect to the login page
+        window.location.href = "../login.html"; // Change the URL to your login page
+      };
+
+      // Add event listener to the logout button or link
+      document
+        .getElementById("logout-button")
+        .addEventListener("click", () => {
+          logout(); // Call the logout function when the button or link is clicked
+        });
+    </script>
+
+    <div id="section">
+      <div class="dash-main">
+        <div class="stats-section">
+          <div class="heading">
+            <h1>Statistics</h1>
+            <img src="../images/formicon/stats.png" alt="" />
+          </div>
+          <hr />
+          <br /><br />
+          <div class="statscards">
+            <div class="users-stats statscard">
+                <div class="statscard-img">
+                    <img src="../images/formicon/Group.png" alt="" />
+                </div>
+              
+              <div>
+                <h1>Clients</h1>
+                <h2><span class="countup">200</span>+</h2>
+              </div>
+              
+            </div>
+            <div class="users-stats statscard">
+                <div class="statscard-img">
+                    <img src="../images/formicon/allblogs.png" alt="" />
+                </div>
+              
+              <div>
+                <h1>Blogs</h1>
+                <h2><span class="countup">100</span>+</h2>
+              </div>
+              
+            </div>
+            <div class="users-stats statscard">
+                <div class="statscard-img">
+                    <img src="../images/formicon/social.png" alt="" />
+                </div>
+              
+              <div>
+                <h1>Reactions</h1>
+              <h2><span class="countup">500</span>+</h2>
+              </div>
+              
+            </div>
+          </div>
+          <div class="chart">
+            <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
+            <script>
+              const xValues = ["Clients", "Blogs", "Reaction", ""];
+              const yValues = [200, 100, 500, 0];
+              const barColors = ["yellow", "green", "white", "blue"];
+
+              new Chart("myChart", {
+                type: "bar",
+                data: {
+                  labels: xValues,
+                  datasets: [
+                    {
+                      backgroundColor: barColors,
+                      data: yValues,
+                    },
+                  ],
+                },
+                options: {
+                  legend: { display: false },
+                  title: {
+                    display: true,
+                    text: "Statistics Chart",
+                  },
+                },
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function handleFileChange() {
+      var fileInput = document.getElementById("imageInput");
+      var previewImage = document.getElementById("previewImage");
+
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        var selectedFile = fileInput.files[0];
+
+        // Read the file as a Data URL (Base64 encoded)
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          // Display the preview image
+          previewImage.src = e.target.result;
+          previewImage.style.display = "block";
+
+          // Save the Base64 data to localStorage
+          localStorage.setItem("imageData", e.target.result);
+        };
+
+        reader.readAsDataURL(selectedFile);
+      } else {
+        console.log("No file selected");
+      }
+    }
+
+    // You can load the image data from localStorage on page load if needed
+    var imageDataFromStorage = localStorage.getItem("imageData");
+    if (imageDataFromStorage) {
+      var previewImage = document.getElementById("previewImage");
+      previewImage.src = imageDataFromStorage;
+      previewImage.style.display = "block";
+    }
+  </script>
+</html>

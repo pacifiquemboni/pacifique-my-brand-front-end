@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Skills</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body onload="CheckLoggedInUser()">
+    <div class="mobile-navbar" id="mobile-navbar">
+      <div class="logo">A<span>T</span>C<span>.</span></div>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">AboutMe</a></li>
+        <li>
+          <a href="skills.html"><span class="active">Skills</span></a>
+        </li>
+        <li><a href="mywork.html">MyWork</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li id="login"><a href="login.html">Login</a></li>
+        <div
+          id="userdashboard"
+          style="display: none; color: #fea609"
+          onclick="logout()"
+        >
+          Logout
+          <img
+            width="10"
+            height="10"
+            src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+            alt="logout-rounded"
+          />
+        </div>
+      </ul>
+      <div id="dashboard" style="display: none" onclick="navigateToDashboard()">
+        Admin Dashboard
+      </div>
+      <a href="contact.html"><button>Contact me</button></a>
+    </div>
+    <script src="login.js"></script>
+    <script>
+      function toggleMenu() {
+        var mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("show");
+      }
+    </script>
+    <div class="body">
+      <!-- skils section -->
+      <div class="skills-div">
+        <center><h1>My Skills</h1></center>
+        <div class="skills-body">
+          <div class="left-skills">
+            <div class="skill-design">
+              <i
+                class="fa fa-paint-brush"
+                style="font-size: 36px; color: #fea609"
+              ></i>
+              <div class="skill-design-content">
+                <h2>Design + Development</h2>
+                <p>
+                  Clean, modern designs - optimized for performance, search
+                  engines, and converting users to customers.
+                </p>
+              </div>
+            </div>
+            <div class="skill-design">
+              <i
+                class="fas fa-code"
+                style="font-size: 36px; color: #fea609"
+              ></i>
+              <div class="skill-design-content">
+                <h2>Technology</h2>
+                <p>
+                  Combined all the latest technologies to a progressive website.
+                </p>
+              </div>
+            </div>
+            <div class="skill-design">
+              <i class="material-icons" style="font-size: 36px; color: #fea609"
+                >&#xe331;</i
+              >
+              <div class="skill-design-content">
+                <h2>Always Resposnive</h2>
+                <p>
+                  A responsive design makes your website accessible to all
+                  users, regardless of their device.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="right-skills">
+            <div class="html">
+              <div class="html5">
+                <div class="html5-cont">HTML 5</div>
+              </div>
+              <p>70%</p>
+            </div>
+            <div class="html">
+              <div class="css3">
+                <div class="css3-cont">CSS 3</div>
+              </div>
+              <p>55%</p>
+            </div>
+            <div class="html">
+              <div class="jquery">
+                <div class="jquery-cont">jQuery</div>
+              </div>
+              <p>50%</p>
+            </div>
+            <div class="html">
+              <div class="php">
+                <div class="php-cont">PHP</div>
+              </div>
+              <p>40%</p>
+            </div>
+            <div class="html">
+              <div class="wordpress">
+                <div class="wordpress-cont">WORDPRESS</div>
+              </div>
+              <p>75%</p>
+            </div>
+            <div class="html">
+              <div class="seo">
+                <div class="seo-cont">SEO</div>
+                <p>100%</p>
+              </div>
+            </div>
+            <div class="html">
+              <div class="ps">
+                <div class="ps-cont">PhotoShop</div>
+              </div>
+              <p>70%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- contact us
+        <div class="contact-div">
+            <div class="address">
+                <i class="material-icons checked">&#xe55f;</i>
+                <h2>ADDRESS</h2>
+                <p>+250,KIAGALI CITY,
+                    NYARUGENGE</p>
+            </div>
+            <div class="verticle">
+                <div class="val1"> </div>
+                <div class="val"> </div>
+                <div class="val1"> </div>
+            </div>
+            <div class="phone-num">
+                <i class="material-icons checked">&#xe551;</i>
+                <h2>PHONE NUMBER</h2>
+                <p>+250787299001,
+                    +250729981083</p>
+            </div>
+            <div class="verticle">
+                <div class="val1"> </div>
+                <div class="val"> </div>
+                <div class="val1"> </div>
+            </div>
+            <div class="email">
+                <i class="material-icons checked">&#xe554;</i>
+                <h2>EMAIL-ADDRESS</h2>
+                <p>pacifiquemboni@gmail.com</p>
+            </div>
+        </div> -->
+    </div>
+    <div class="footer">
+      <div class="footer-body">
+        <br />
+        <hr />
+        <div class="social-footer">
+          <img src="images/social/github.png" />
+          <img src="images/social/gmail.png" />
+          <img src="images/social/facebook.png" />
+          <img src="images/social/discord.png" />
+          <img src="images/social/linkedin.png" />
+        </div>
+        <h1>2024 pacifiquemboni. All Rights Reserved</h1>
+      </div>
+    </div>
+    <script>
+      // fixing header
+      window.onscroll = function () {
+        myFunction();
+      };
+
+      var header = document.getElementById("mobile-navbar");
+      var navbar = document.getElementById("mobilemenu");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+  </body>
+</html>

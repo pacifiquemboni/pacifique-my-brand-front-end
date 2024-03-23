@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="addblog.js" defer></script>
+    <script src="adduser.js"></script>
+  </head>
+  <body onload="readAll()">
+    <div class="mobile-navbar" id="mobile-navbar">
+      <div class="logo">A<span>T</span>C<span>.</span></div>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">AboutMe</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="mywork.html">MyWork</a></li>
+        <li>
+          <a href="blogs.html"><span class="active">Blogs</span></a>
+        </li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+      <a href="contact.html"><button>Contact me</button></a>
+      <div class="profile" >
+        <div class="avatar">
+            profile
+        </div>
+        <p id="name"></p>
+    </div>
+    </div>
+    <script>
+      function toggleMenu() {
+        var mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("show");
+      }
+    </script>
+    <div class="body">
+      <!-- blogs section -->
+      <div class="myblog-div">
+        <div class="blogs myblogs" id="myblogs">
+          <!-- this is where blogs will br displayed -->
+        </div>
+      </div>
+      
+      <!-- contact us -->
+      <div class="contact-div">
+        <div class="address">
+          <i class="material-icons checked">&#xe55f;</i>
+          <h2>ADDRESS</h2>
+          <p>+250,KIAGALI CITY, NYARUGENGE</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="phone-num">
+          <i class="material-icons checked">&#xe551;</i>
+          <h2>PHONE NUMBER</h2>
+          <p>+250787299001, +250729981083</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="email">
+          <i class="material-icons checked">&#xe554;</i>
+          <h2>EMAIL-ADDRESS</h2>
+          <p>pacifiquemboni@gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-body">
+        <div class="social-footer">
+          <img src="images/social/github.png" />
+          <img src="images/social/gmail.png" />
+          <img src="images/social/facebook.png" />
+          <img src="images/social/discord.png" />
+          <img src="images/social/linkedin.png" />
+        </div>
+        <br />
+        <hr />
+        <h1>2024 pacifiquemboni. All Rights Reserved</h1>
+      </div>
+    </div>
+    <script>
+      // fixing header
+      window.onscroll = function () {
+        myFunction();
+      };
+
+      var header = document.getElementById("mobile-navbar");
+      var navbar = document.getElementById("mobilemenu");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+  </body>
+</html>

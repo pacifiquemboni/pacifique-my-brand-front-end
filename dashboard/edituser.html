@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit User</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="validate.js" defer></script> -->
+    <script src="adduser.js" defer></script>
+  </head>
+  <body>
+    <!-- onload=" readUserData() -->
+    <div class="dashboard">
+      <div class="dash-main">
+        <div class="user-table">
+          <!-- Editing a user form -->
+          <div class="login-form">
+            <form id="editUserForm">
+              <h1>Edit User</h1>
+
+              <input
+                type="text"
+                placeholder="User names"
+                id="editusername"
+                class="uname"
+                name="name"
+              /><br />
+              <div id="signUserNameError"></div>
+              <input
+                type="text"
+                placeholder="User E-mail"
+                id="edituseremail"
+                class="uemail"
+                name="email"
+              /><br />
+              <div id="emailError"></div>
+
+              <input
+                type="text"
+                placeholder="confirm password"
+                id="edituserpassword"
+                class="upassword2"
+                name="password2"
+              />
+              <div id="signConfirmPasswordError"></div>
+
+              <div class="login-btn">
+                <a href="#"
+                  ><button type="submit" value="submit">Update-User</button></a
+                >
+              </div>
+            </form>
+            <script src="./edituser.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

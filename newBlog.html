@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="validate.js"></script>
+
+    <script src="addblog.js" defer></script>
+  </head>
+  <body onload="fetchBlogs()">
+    <!-- onload="readAllDash()" -->
+    <div class="dashboard">
+      <div class="dash-nav">
+        <div class="dash-mobile-navbar">
+          <div class="dash-logo"><h3>DASHBOARD</h3></div>
+          <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+          </div>
+          <ul class="dash-mobile-menu" id="dash-mobileMenu">
+            <li>
+              <a href="newBlog.html" class="dash-active"
+                ><img src="images/formicon/Add.png" alt="" /> Blogs</a
+              >
+            </li>
+            <li>
+              <a href="stats.html"
+                ><img src="images/formicon/stats.png" alt="" /> Stats</a
+              >
+            </li>
+            <li>
+              <a href="users.html"
+                ><img src="images/formicon/User.png" alt="" /> Users</a
+              >
+            </li>
+            <li>
+              <a href="dashmessages.html"
+                ><img src="images/formicon/Message.png" alt="" /> Messages</a
+              >
+            </li>
+            <li>
+              <a href="blogs.html"
+                ><img src="images/formicon/allblogs.png" alt="" /> All Blogs</a
+              >
+            </li>
+          </ul>
+          <div class="dash-nav-footer">
+            <a href="board.html">
+              <div class="profile">
+                <div class="avatar">
+                  <img src="images/me.jpg" alt="" />
+                </div>
+                <p>Admin</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <script>
+          function toggleMenu() {
+            var mobileMenu = document.getElementById("dash-mobileMenu");
+            mobileMenu.classList.toggle("show");
+          }
+        </script>
+      </div>
+      <hr class="dash-hr" />
+
+      <div class="dash-main">
+        <div class="dash-form">
+          <div class="login-form">
+            <!-- add blog form -->
+            <div id="toastNotification" class="toast hidden"></div>
+          <div id="toastNotification" class="toast hidden"></div>
+            <form id="blogform" class="blogform1">
+              <div class="heading">
+                <h1>Add New Blog</h1>
+              </div>
+              <div id="success"></div>
+              <label for="message">Blog Title :</label>
+              <input
+                type="text"
+                placeholder="Enter Blog Title"
+                id="blogTitle"
+              />
+              <label for="message">Blog intro :</label>
+              <input
+                type="text"
+                placeholder="Enter Blog Intoduction"
+                id="blogIntro"
+              />
+              <div id="blogTitleError"></div>
+              <label for="message">Blog Body :</label>
+              <!-- <input type="text" id="dash-textarea"> -->
+              <textarea
+                placeholder="blog body"
+                id="dashtextarea"
+                class="dash-textarea"
+              ></textarea>
+
+              <input
+                type="text"
+                placeholder="image url"
+                id="blogImage"
+                
+              />
+              <div id="uploadImage" style="color: green;"></div>
+              <div id="my-editor"></div>
+
+              <div id="dashBodyError"></div>
+              <div class="dash-btn">
+                <form
+                  id="imageForm"
+                  class="fileupload"
+                  enctype="multipart/form-data"
+                ><img src="images/formicon/Upload.png" />
+                  <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept="image/*"
+                    onchange="handleFileChange() "
+                  />
+                  
+                  <button type="button" onclick="imageUpload()">
+                    Upload Image
+                  </button>
+                </form>
+                <button type="submit" value="submit" id="postbtn" style="display: none;">PostBlog</button>
+              </div>
+            </form>
+
+            <!-- update blog form -->
+            <form id="updateblogform" onsubmit="return validateblogform()">
+              <div class="heading">
+                <h1>Update Blog</h1>
+              </div>
+              <div id="success"></div>
+              <label for="message">Update Blog Title :</label>
+              <input
+                type="text"
+                placeholder="Enter Blog Title"
+                id="ublogTitle"
+              />
+              <input type="text" id="id" hidden />
+              <div id="blogTitleError"></div>
+              <label for="message">Update Blog Body :</label>
+              <!-- <input type="text" id="dash-textarea"> -->
+              <textarea
+                placeholder="blog body"
+                id="udashtextarea"
+                class="dash-textarea"
+              ></textarea>
+              <div id="dashBodyError"></div>
+              <div class="dash-btn">
+                <button type="button" value="submit" onclick="update()">
+                  UpdateBlog
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="dash-right">
+          <div class="heading">
+            <h3>Image Preview</h3>
+          </div>
+          <img id="previewImage" />
+        </div>
+        <div class="updatedash-right">
+          <div class="heading">
+            <h3>Image Preview</h3>
+          </div>
+          <img id="upreviewImage" />
+        </div>
+
+        <div id="blog-table">
+          <button type="button" id="addblogbtn" onclick="create()">
+            + Add Blog
+          </button>
+          <div class="heading">
+            <h1>Recent blogs:</h1>
+          </div>
+          <table>
+            <thead>
+              <th class="image">Image</th>
+              <th>Blog Title</th>
+              <th>Blog Author</th>
+              <th>Blog Introduction</th>
+              <!-- <th>Blog Body</th> -->
+              <th>Actions</th>
+            </thead>
+            <tbody id="blogdata_table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function handleFileChange() {
+        var fileInput = document.getElementById("imageInput");
+        var previewImage = document.getElementById("previewImage");
+
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+          var selectedFile = fileInput.files[0];
+
+          // Read the file as a Data URL (Base64 encoded)
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            // Display the preview image
+            previewImage.src = e.target.result;
+            previewImage.style.display = "block";
+
+            // Save the Base64 data to localStorage
+            localStorage.setItem("imageData", e.target.result);
+          };
+
+          reader.readAsDataURL(selectedFile);
+        } else {
+          console.log("No file selected");
+        }
+      }
+
+      // You can load the image data from localStorage on page load if needed
+      var imageDataFromStorage = localStorage.getItem("imageData");
+      if (imageDataFromStorage) {
+        var previewImage = document.getElementById("previewImage");
+        previewImage.src = imageDataFromStorage;
+        previewImage.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

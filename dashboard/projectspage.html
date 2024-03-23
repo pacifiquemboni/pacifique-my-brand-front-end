@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="dashcss.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <title>Dash Projects</title>
+    <!-- <script src="validate.js"></script> -->
+
+    <!-- <script src="addblog.js"></script> -->
+    <script src="addproj.js"></script>
+  </head>
+  <body onload="fetchprojects()">
+    <header>
+      <input type="checkbox" name="" id="check" />
+      <label for="check">
+        <img src="./bar.png" alt="" id="menubtn" style="width: 50px" />
+        <img src="./x.png" alt="" id="menucancel" style="width: 20px" />
+      </label>
+      <div class="sidebar">
+        <header>Dashboard</header>
+        <ul>
+          <li >
+            <a href="dashaddblog.html"
+              ><img
+                width="64"
+                height="64"
+                src="https://img.icons8.com/hatch/64/FFFFFF/add.png"
+                alt="add"
+              />
+              New Blog</a
+            >
+          </li>
+          <li class="active">
+            <a href="projectspage.html"
+              ><img
+                width="24"
+                height="24"
+                src="https://img.icons8.com/material/24/FFFFFF/view-quilt.png"
+                alt="view-quilt"
+              />
+              Projects</a
+            >
+          </li>
+          <li>
+            <a href="stats.html"
+              ><img
+                width="32"
+                height="32"
+                src="https://img.icons8.com/external-anggara-glyph-anggara-putra/32/FFFFFF/external-statistic-user-interface-anggara-glyph-anggara-putra.png"
+                alt="external-statistic-user-interface-anggara-glyph-anggara-putra"
+              />
+              Statatistics</a
+            >
+          </li>
+          <li>
+            <a href="users.html"
+              ><img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/pulsar-line/48/FFFFFF/group.png"
+                alt="group"
+              />Users</a
+            >
+          </li>
+          <li>
+            <a href="messages.html"
+              ><img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/FFFFFF/message-group.png"
+                alt="message-group"
+              />
+              Messages</a
+            >
+          </li>
+          <li>
+            <a href="../index.html"
+              ><img
+                width="26"
+                height="26"
+                src="https://img.icons8.com/metro/26/FFFFFF/home.png"
+                alt="home"
+              />Home</a
+            >
+          </li>
+        </ul>
+        <li>
+          <a href="#" class="logout" onclick="logout()">
+            <img
+              width="50"
+              height="50"
+              src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+              alt="logout-rounded"
+            />
+            <span class="nav-item">logout</span>
+          </a>
+        </li>
+      </div>
+    </header>
+    <script>
+      const logout = () => {
+        // Clear the authentication token from local storage
+        localStorage.removeItem("token");
+        localStorage.removeItem("Role");
+        // Redirect the user to the login page or update UI to reflect logged out state
+        // For example, you can redirect to the login page
+        window.location.href = "../login.html"; // Change the URL to your login page
+      };
+
+      // Add event listener to the logout button or link
+    </script>
+    <!-- <div id="section-header">
+          
+    </div> -->
+
+    <div id="section">
+      <div class="dash-main">
+        <div class="dash-form">
+          <div class="login-form">
+            <div id="confirmationModal" class="modal">
+              <div class="modal-content">
+                <p>Are you sure you want to delete this project?</p>
+                <button id="confirmButton">Confirm</button>
+                <button id="cancelButton">Cancel</button>
+              </div>
+            </div>
+
+            <div id="toastNotification" class="toast hidden"></div>
+            <div id="toastNotification" class="toast hidden"></div>
+            <form id="projectform" class="projectform1">
+              <div class="heading">
+                <h1>Add New Projects</h1>
+              </div>
+              <div id="success"></div>
+              <label for="message">Project Name :</label>
+              <input
+                type="text"
+                placeholder="Enter Project Title"
+                id="ProjectName"
+              />
+
+              <label for="message">Project description :</label>
+              <!-- <input type="text" id="dash-textarea"> -->
+              <textarea
+                placeholder="Project body"
+                id="dashtextarea"
+                class="dash-textarea"
+              ></textarea>
+              <label for="message">Strated :</label>
+              <input
+                type="date"
+                placeholder="Enter Project Intoduction"
+                id="started"
+              />
+              <label for="message">Ended :</label>
+              <input
+                type="date"
+                placeholder="Enter Project Intoduction"
+                id="ended"
+              />
+
+              <input type="text" placeholder="image url" id="blogImage" />
+              <div id="uploadImage" style="color: green"></div>
+              <div id="my-editor"></div>
+
+              <div id="dashBodyError"></div>
+              <div class="dash-btn">
+                <form
+                  id="imageForm"
+                  class="fileupload"
+                  enctype="multipart/form-data"
+                >
+                  <img src="../images/formicon/Upload.png" />
+                  <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept="image/*"
+                    onchange="handleFileChange() "
+                  />
+
+                  <button type="button" onclick="imageUpload()">
+                    Upload Image
+                  </button>
+                </form>
+                <button
+                  type="submit"
+                  value="submit"
+                  id="postbtn"
+                  style="display: block"
+                >
+                  PostProject
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="dash-right">
+          <div class="heading">
+            <h3>Image Preview</h3>
+          </div>
+          <img id="previewImage" />
+        </div>
+
+        <div id="projects">
+          <button type="button" id="addblogbtn" onclick="show()">
+            + Add Project
+          </button>
+          <br /><br />
+          <div class="heading">
+            <h1>Added Projects:</h1>
+          </div>
+
+          <div id="projects-cards"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function handleFileChange() {
+      var fileInput = document.getElementById("imageInput");
+      var previewImage = document.getElementById("previewImage");
+
+      if (fileInput && fileInput.files && fileInput.files.length > 0) {
+        var selectedFile = fileInput.files[0];
+
+        // Read the file as a Data URL (Base64 encoded)
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          // Display the preview image
+          previewImage.src = e.target.result;
+          previewImage.style.display = "block";
+
+          // Save the Base64 data to localStorage
+          localStorage.setItem("imageData", e.target.result);
+        };
+
+        reader.readAsDataURL(selectedFile);
+      } else {
+        console.log("No file selected");
+      }
+    }
+
+    // You can load the image data from localStorage on page load if needed
+    var imageDataFromStorage = localStorage.getItem("imageData");
+    if (imageDataFromStorage) {
+      var previewImage = document.getElementById("previewImage");
+      previewImage.src = imageDataFromStorage;
+      previewImage.style.display = "block";
+    }
+  </script>
+</html>

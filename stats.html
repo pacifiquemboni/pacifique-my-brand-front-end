@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="validate.js"></script>
+  </head>
+  <body onload="runAnimations()">
+    <div class="dashboard">
+      <div class="dash-nav">
+        <div class="dash-mobile-navbar">
+          <div class="dash-logo"><h3>DASHBOARD</h3></div>
+          <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+          </div>
+          <ul class="dash-mobile-menu" id="dash-mobileMenu">
+            <li>
+              <a href="newBlog.html"
+                ><img src="images/formicon/Add.png" alt="" /> New Blog</a
+              >
+            </li>
+            <li >
+              <a href="stats.html" class="dash-active"
+                ><img src="images/formicon/stats.png" alt="" /> Stats</a
+              >
+            </li>
+            <li>
+              <a href="users.html"
+                ><img src="images/formicon/User.png" alt="" />
+                Users
+                <div class="status">
+                  <img src="images/formicon/status.png" alt="" />
+                </div> 
+
+                
+              </a>
+            </li>
+            <li>
+              <a href="dashmessages.html"
+                >
+                <img src="images/formicon/Message.png" alt="" />
+                 Messages
+                 <div class="status">
+                  <img src="images/formicon/status.png" alt="" />
+                </div>
+
+                
+              </a>
+            </li>
+            <li>
+              <a href="blogs.html"
+                ><img src="images/formicon/allblogs.png" alt="" /> All Blogs</a
+              >
+            </li>
+          </ul>
+          <div class="dash-nav-footer">
+            <a href="board.html">
+              <div class="profile">
+                <div class="avatar">
+                  <img src="images/me.jpg" alt="" />
+                </div>
+                <p>Admin</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <script>
+          function toggleMenu() {
+            var mobileMenu = document.getElementById("dash-mobileMenu");
+            mobileMenu.classList.toggle("show");
+          }
+        </script>
+      </div>
+      <hr class="dash-hr" />
+
+      <div class="dash-main">
+        <div class="stats-section">
+          <div class="heading">
+            <h1>Statistics</h1>
+            <img src="images/formicon/stats.png" alt="" />
+          </div>
+          <hr />
+          <br /><br />
+          <div class="cards">
+            <div class="users-stats card">
+                <div class="card-img">
+                    <img src="images/formicon/Group.png" alt="" />
+                </div>
+              
+              <div>
+                <h1>Clients</h1>
+                <h2><span class="countup">200</span>+</h2>
+              </div>
+              
+            </div>
+            <div class="users-stats card">
+                <div class="card-img">
+                    <img src="images/formicon/allblogs.png" alt="" />
+                </div>
+              
+              <div>
+                <h1>Blogs</h1>
+                <h2><span class="countup">100</span>+</h2>
+              </div>
+              
+            </div>
+            <div class="users-stats card">
+                <div class="card-img">
+                    <img src="images/formicon/social.png" alt="" />
+                </div>
+              
+              <div>
+                <h1>Reactions</h1>
+              <h2><span class="countup">500</span>+</h2>
+              </div>
+              
+            </div>
+            <!-- <div class="blogs-stats card">
+              <img src="images/formicon/allblogs.png" alt="" />
+              <h1>Blogs</h1>
+              <h1><span class="countup">100</span>+</h1>
+            </div>
+            <div class="reaction-stats card">
+              
+              <h1>Reactions</h1>
+              <h1><span class="countup">500</span>+</h1>
+            </div> -->
+          </div>
+          <div class="chart">
+            <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
+            <script>
+              const xValues = ["Clients", "Blogs", "Reaction", ""];
+              const yValues = [200, 100, 500, 0];
+              const barColors = ["yellow", "green", "white", "blue"];
+
+              new Chart("myChart", {
+                type: "bar",
+                data: {
+                  labels: xValues,
+                  datasets: [
+                    {
+                      backgroundColor: barColors,
+                      data: yValues,
+                    },
+                  ],
+                },
+                options: {
+                  legend: { display: false },
+                  title: {
+                    display: true,
+                    text: "Statistics Chart",
+                  },
+                },
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

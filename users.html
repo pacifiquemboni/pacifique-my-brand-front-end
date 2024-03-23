@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="validate.js" defer></script> -->
+    <script src="adduser.js" defer></script>
+  </head>
+  <body>
+    <!-- onload=" readUserData() -->
+    <div class="dashboard">
+      <div class="dash-nav">
+        <div class="dash-mobile-navbar">
+          <div class="dash-logo"><h3>DASHBOARD</h3></div>
+          <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+          </div>
+          <ul class="dash-mobile-menu" id="dash-mobileMenu">
+            <li>
+              <a href="newBlog.html"
+                ><img src="images/formicon/Add.png" alt="" /> New Blog</a
+              >
+            </li>
+            <li>
+              <a href="stats.html"
+                ><img src="images/formicon/stats.png" alt="" /> Stats</a
+              >
+            </li>
+            <li>
+              <a href="users.html" class="dash-active"
+                ><img src="images/formicon/User.png" alt="" /> Users</a
+              >
+            </li>
+            <li>
+              <a href="dashmessages.html"
+                ><img src="images/formicon/Message.png" alt="" /> Messages</a
+              >
+            </li>
+            <li>
+              <a href="blogs.html"
+                ><img src="images/formicon/allblogs.png" alt="" /> All Blogs</a
+              >
+            </li>
+          </ul>
+          <div class="dash-nav-footer">
+            <a href="board.html">
+              <div class="profile">
+                <div class="avatar">
+                  <img src="images/me.jpg" alt="" />
+                </div>
+                <p>Admin</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <script>
+          function toggleMenu() {
+            var mobileMenu = document.getElementById("dash-mobileMenu");
+            mobileMenu.classList.toggle("show");
+          }
+        </script>
+      </div>
+      <hr class="dash-hr" />
+
+      <div class="dash-main">
+        <div class="user-table">
+          <button type="button" id="adduserbtn" onclick="createUser()">
+            + Add User
+          </button>
+          <div class="login-form">
+            <form
+              id="sign-upForm"
+              class="sign-upForm"
+              oninput="return validateSignForm() && validateSignForm()"
+            >
+              <h1>Add New User</h1>
+              <input
+                type="text"
+                placeholder="User names"
+                id="signUserName"
+                name="name"
+              /><br />
+              <div id="signUserNameError"></div>
+              <input
+                type="text"
+                placeholder="User E-mail"
+                id="signEmail"
+                name="email"
+                oninput="firstPassValidate()"
+              /><br />
+              <div id="emailError"></div>
+              <input
+                type="text"
+                placeholder="User' password"
+                id="password"
+                oninput="firstPassValidate()"
+              />
+              <div id="signPasswordError"></div>
+              <div id="upper" class="rederror"></div>
+              <div id="upperyes" class="greenerror"></div>
+              <div id="lower" class="rederror"></div>
+              <div id="loweryes" class="greenerror"></div>
+              <div id="specialchar" class="rederror"></div>
+              <div id="specialcharyes" class="greenerror"></div>
+              <div id="number" class="rederror"></div>
+              <div id="numberyes" class="greenerror"></div>
+              <div id="space" class="rederror"></div>
+              <div id="spaceyes" class="greenerror"></div>
+              <input
+                type="text"
+                placeholder="confirm password"
+                id="password2"
+                name="password2"
+                oninput="firstPassValidate()"
+              />
+              <div id="signConfirmPasswordError"></div>
+
+              <div class="login-btn">
+                <a href="#"
+                  ><button type="button" value="submit" onclick="submitForm()">
+                    Add-User
+                  </button></a
+                >
+              </div>
+            </form>
+          </div>
+          <div class="heading">
+            <h1>Registered Users</h1>
+            <img src="images/formicon/User.png" alt="" />
+          </div>
+
+          <hr />
+          <table>
+            <thead>
+              <tr>
+                <th>FullName</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userdata_table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

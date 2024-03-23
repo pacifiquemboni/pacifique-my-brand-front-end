@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Blog</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="validate.js"></script>
+
+    <script src="editBlog.js" defer></script>
+  </head>
+  <body>
+    <!-- onload="readAllDash()" -->
+    <div class="dashboard">
+      
+      
+
+      <div class="dash-main">
+        <div class="dash-form">
+          <div class="login-form">
+            <!-- add blog form -->
+            <form id="editblogform">
+              <div id="toastNotification" class="toast hidden"></div>
+              <div class="heading">
+                <h1>Edit Blog</h1>
+              </div>
+              <div id="success"></div>
+              <label for="message">Blog Title :</label>
+              <input
+                type="text"
+                placeholder="Enter Blog Title"
+                id="editblogTitle"
+              />
+              <label for="message">Blog intro :</label>
+              <input
+                type="text"
+                placeholder="Enter Blog Intoduction"
+                id="editblogIntro"
+              />
+              <div id="blogTitleError"></div>
+              <label for="message">Blog Body :</label>
+              <!-- <input type="text" id="dash-textarea"> -->
+              <textarea
+                placeholder="blog body"
+                id="editdashtextarea"
+                class="dash-textarea"
+              ></textarea>
+
+              <input type="text" placeholder="image url" id="editblogImage"hidden/>
+              <div id="uploadImage" style="color: green"></div>
+              <div id="my-editor"></div>
+
+              <div id="uploadError"></div>
+              <div class="dash-btn">
+                <form
+                  id="imageForm"
+                  class="fileupload"
+                  enctype="multipart/form-data"
+                >
+                  <img src="../images/formicon/Upload.png" />
+                  <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept="image/*"
+                    
+                  />
+                  <!-- onchange="handleFileChange() " -->
+                  <button type="button" onclick="imageUpload()">
+                    Upload Image
+                  </button>
+                </form>
+                <button type="submit" value="submit" id="postbtn">
+                  Update-Blog
+                </button>
+              </div>
+            </form>
+
+            <!-- update blog form -->
+          </div>
+        </div>
+        <div class="dash-right">
+          <h2>image</h2>
+        </div>
+        <div class="updatedash-right">
+          <div class="heading">
+            <h3>Image Preview</h3>
+          </div>
+          <img id="upreviewImage" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function handleFileChange() {
+        var fileInput = document.getElementById("imageInput");
+        var previewImage = document.getElementById("previewImage");
+
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+          var selectedFile = fileInput.files[0];
+
+          // Read the file as a Data URL (Base64 encoded)
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            // Display the preview image
+            previewImage.src = e.target.result;
+            previewImage.style.display = "block";
+
+            // Save the Base64 data to localStorage
+            localStorage.setItem("imageData", e.target.result);
+          };
+
+          reader.readAsDataURL(selectedFile);
+        } else {
+          console.log("No file selected");
+        }
+      }
+
+      // You can load the image data from localStorage on page load if needed
+      var imageDataFromStorage = localStorage.getItem("imageData");
+      if (imageDataFromStorage) {
+        var previewImage = document.getElementById("previewImage");
+        previewImage.src = imageDataFromStorage;
+        previewImage.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

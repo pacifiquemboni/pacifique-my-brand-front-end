@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="dashcss.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <title>Messages</title>
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="validate.js"></script>
+    <script src="message.js"></script>
+  </head>
+  <body onload="fetchMessages()">
+    <div id="toastNotification" class="toast hidden"></div>
+    <header>
+      <input type="checkbox" name="" id="check" />
+      <label for="check">
+        <img src="./bar.png" alt="" id="menubtn" style="width: 50px" />
+        <img src="./x.png" alt="" id="menucancel" style="width: 20px" />
+      </label>
+      <div class="sidebar">
+        <header>Dashboard</header>
+        <ul>
+          <li >
+            <a href="dashaddblog.html"
+              ><img
+                width="64"
+                height="64"
+                src="https://img.icons8.com/hatch/64/FFFFFF/add.png"
+                alt="add"
+              />
+              New Blog</a
+            >
+          </li>
+          <li>
+            <a href="projectspage.html"
+              ><img
+                width="24"
+                height="24"
+                src="https://img.icons8.com/material/24/FFFFFF/view-quilt.png"
+                alt="view-quilt"
+              />
+              Projects</a
+            >
+          </li>
+          <li>
+            <a href="stats.html"
+              ><img
+                width="32"
+                height="32"
+                src="https://img.icons8.com/external-anggara-glyph-anggara-putra/32/FFFFFF/external-statistic-user-interface-anggara-glyph-anggara-putra.png"
+                alt="external-statistic-user-interface-anggara-glyph-anggara-putra"
+              />
+              Statatistics</a
+            >
+          </li>
+          <li>
+            <a href="users.html"
+              ><img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/pulsar-line/48/FFFFFF/group.png"
+                alt="group"
+              />Users</a
+            >
+          </li>
+          <li class="active">
+            <a href="messages.html"
+              ><img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/FFFFFF/message-group.png"
+                alt="message-group"
+              />
+              Messages</a
+            >
+          </li>
+          <li>
+            <a href="../index.html"
+              ><img
+                width="26"
+                height="26"
+                src="https://img.icons8.com/metro/26/FFFFFF/home.png"
+                alt="home"
+              />Home</a
+            >
+          </li>
+        </ul>
+        <li>
+          <a href="#" class="logout" onclick="logout()">
+            <img
+              width="50"
+              height="50"
+              src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+              alt="logout-rounded"
+            />
+            <span class="nav-item">logout</span>
+          </a>
+        </li>
+      </div>
+    </header>
+    <script>
+      const logout = () => {
+        // Clear the authentication token from local storage
+        localStorage.removeItem("token");
+          localStorage.removeItem("Role");
+        // Redirect the user to the login page or update UI to reflect logged out state
+        // For example, you can redirect to the login page
+        window.location.href = "../login.html"; // Change the URL to your login page
+      };
+
+      // Add event listener to the logout button or link
+      document.getElementById("logout-button").addEventListener("click", () => {
+        logout(); // Call the logout function when the button or link is clicked
+      });
+    </script>
+
+    <div id="section">
+      <div class="dash-main">
+        <div class="user-table">
+          <div class="heading">
+            <h1>All Messages</h1>
+            <!-- <img src="images/formicon/Message.png" alt="" /> -->
+          </div>
+
+          <hr />
+          
+            <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th class="tdemail">Email</th>
+                <th class="tdmessage">Message</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="message-table">
+              <!-- Sample data (replace with your actual data) -->
+            </tbody>
+          </table>
+          
+          
+          <div id="smsError"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

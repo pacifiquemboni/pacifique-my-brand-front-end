@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="./responsive.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Iceland">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/c8abb356dd.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script src="validate.js"></script>
+        
+    </head>
+    <body onload="runAnimations()">
+        <div class="dashboard">
+                
+            <div class="dash-nav">
+                <div class="dash-mobile-navbar">
+                    <div class="dash-logo"><h3>DASHBOARD</h3></div>
+                    <div class="menu-icon" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <ul class="dash-mobile-menu" id="dash-mobileMenu">
+                <li><a href="newBlog.html"><img src="images/formicon/Add.png" alt=""> New Blog</a></li>
+                <li><a href="stats.html"><img src="images/formicon/stats.png" alt=""> Stats</a></li>
+                <li><a href="users.html"><img src="images/formicon/User.png" alt=""> Users
+                 
+                    <div class="status"><img src="images/formicon/status.png"  alt=""></div> </a></li>
+                <li><a href="dashmessages.html"><img src="images/formicon/Message.png" alt=""> Messages
+                 
+                    <div class="status"><img src="images/formicon/status.png"  alt=""></div> </a></li>
+                <li><a href="blogs.html"><img src="images/formicon/allblogs.png" alt=""> All Blogs</a></li>
+                
+    
+                    </ul>
+                    <div class="dash-nav-footer ">
+                        <a href="board.html">
+                    <div class="profile dash-active">
+                        <div class="avatar">
+                            <img src="images/me.jpg" alt="">
+                        </div>
+                        <p>Admin</p>
+                    </div>
+                        </a>
+                    </div>
+                    
+                </div>
+                
+                <script>
+                    function toggleMenu() {
+                        var mobileMenu = document.getElementById("dash-mobileMenu");
+                        mobileMenu.classList.toggle("show");
+                    }
+                </script>
+                
+                
+            </div>
+            <hr class="dash-hr">
+            
+            <div class="dash-main">
+                <div class="profile-section">
+                    <div class="heading">
+                       <h1>Profile</h1> 
+                    </div>
+                    
+                    <hr>
+                    <div class="board-profile">
+                        <img src="images/me.jpg" alt="profile">
+                        <div class="profile-details">
+                            <h3>Name: Pacifique mbonimana</h3>
+                            <h4>E-mail: pacifiquemboni@gmail.com</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <div class="heading">
+                      <h1>Settings</h1>
+                      <img src="images/formicon/Setting.png" alt="" />
+                    </div>
+          
+                    <hr />
+                    <br />
+                    <div class="change-password">
+                      <h2>Change Password</h2>
+                      <form>
+                        <label for="current-password">Current Password:</label>
+                        <input
+                          type="password"
+                          id="current-password"
+                          name="current-password"
+                          required
+                        />
+          
+                        <label for="new-password">New Password:</label>
+                        <input
+                          type="password"
+                          id="new-password"
+                          name="new-password"
+                          required
+                        />
+          
+                        <label for="confirm-password">Confirm Password:</label>
+                        <input
+                          type="password"
+                          id="confirm-password"
+                          name="confirm-password"
+                          required
+                        />
+          
+                        <button type="submit">Change Password</button>
+                      </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>    
+    </body>
+</html>

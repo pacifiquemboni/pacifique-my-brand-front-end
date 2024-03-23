@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Users</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="dashcss.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/c8abb356dd.js" crossorigin="anonymous"></script>
+        <!-- <script src="validate.js" defer></script> -->
+        <script src="adduser.js" defer></script>
+    <script src="validate.js"></script>
+  </head>
+  <body>
+    <header>
+      <input type="checkbox" name="" id="check" />
+      <label for="check">
+        <img src="./bar.png" alt="" id="menubtn" style="width: 50px" />
+        <img src="./x.png" alt="" id="menucancel" style="width: 20px" />
+      </label>
+      <div class="sidebar">
+        <header>Dashboard</header>
+        <ul>
+          <li >
+            <a href="dashaddblog.html"
+              ><img
+                width="64"
+                height="64"
+                src="https://img.icons8.com/hatch/64/FFFFFF/add.png"
+                alt="add"
+              />
+              New Blog</a
+            >
+          </li>
+          <li>
+            <a href="projectspage.html"
+              ><img
+                width="24"
+                height="24"
+                src="https://img.icons8.com/material/24/FFFFFF/view-quilt.png"
+                alt="view-quilt"
+              />
+              Projects</a
+            >
+          </li>
+          <li>
+            <a href="stats.html"
+              ><img
+                width="32"
+                height="32"
+                src="https://img.icons8.com/external-anggara-glyph-anggara-putra/32/FFFFFF/external-statistic-user-interface-anggara-glyph-anggara-putra.png"
+                alt="external-statistic-user-interface-anggara-glyph-anggara-putra"
+              />
+              Statatistics</a
+            >
+          </li>
+          <li class="active">
+            <a href="users.html"
+              ><img
+                width="48"
+                height="48"
+                src="https://img.icons8.com/pulsar-line/48/FFFFFF/group.png"
+                alt="group"
+              />Users</a
+            >
+          </li>
+          <li>
+            <a href="messages.html"
+              ><img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/FFFFFF/message-group.png"
+                alt="message-group"
+              />
+              Messages</a
+            >
+          </li>
+          <li>
+            <a href="../index.html"
+              ><img
+                width="26"
+                height="26"
+                src="https://img.icons8.com/metro/26/FFFFFF/home.png"
+                alt="home"
+              />Home</a
+            >
+          </li>
+        </ul>
+        <li>
+          <a href="#" class="logout" onclick="logout()">
+            <img
+              width="50"
+              height="50"
+              src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+              alt="logout-rounded"
+            />
+            <span class="nav-item">logout</span>
+          </a>
+        </li>
+      </div>
+    </header>
+    <script>
+      const logout = () => {
+        // Clear the authentication token from local storage
+        localStorage.removeItem("token");
+        localStorage.removeItem("Role");
+        // Redirect the user to the login page or update UI to reflect logged out state
+        // For example, you can redirect to the login page
+        window.location.href = "../login.html"; // Change the URL to your login page
+      };
+
+      // Add event listener to the logout button or link
+      document
+        .getElementById("logout-button")
+        .addEventListener("click", () => {
+          logout(); // Call the logout function when the button or link is clicked
+        });
+    </script>
+
+    <div id="section">
+      <div class="dash-main">
+        <div class="user-table">
+          <button type="button" id="adduserbtn" onclick="createUser()">
+            <img
+                  width="14"
+                  height="14"
+                  src="https://img.icons8.com/hatch/64/FFFFFF/add.png"
+                  /> Add User
+          </button>
+          <div class="login-form">
+            <div id="toastNotification" class="toast hidden"></div>
+            <form
+              id="sign-upForm"
+              class="sign-upForm"
+              oninput="return validateSignForm() && validateSignForm()"
+            >
+              <h1>Add New User</h1>
+              <input
+                type="text"
+                placeholder="User names"
+                id="signUserName"
+                name="name"
+              /><br />
+              <div id="signUserNameError"></div>
+              <input
+                type="text"
+                placeholder="User E-mail"
+                id="signEmail"
+                name="email"
+                oninput="firstPassValidate()"
+              /><br />
+              <div id="emailError"></div>
+              <input
+                type="text"
+                placeholder="User' password"
+                id="password"
+                oninput="firstPassValidate()"
+              />
+              <div id="signPasswordError"></div>
+              <div id="upper" class="rederror"></div>
+              <div id="upperyes" class="greenerror"></div>
+              <div id="lower" class="rederror"></div>
+              <div id="loweryes" class="greenerror"></div>
+              <div id="specialchar" class="rederror"></div>
+              <div id="specialcharyes" class="greenerror"></div>
+              <div id="number" class="rederror"></div>
+              <div id="numberyes" class="greenerror"></div>
+              <div id="space" class="rederror"></div>
+              <div id="spaceyes" class="greenerror"></div>
+              <input
+                type="text"
+                placeholder="confirm password"
+                id="password2"
+                name="password2"
+                oninput="firstPassValidate()"
+              />
+              <div id="signConfirmPasswordError"></div>
+
+              <div class="login-btn">
+                <a href="#"
+                  ><button type="button" value="submit" onclick="submitForm()">
+                    Add-User
+                  </button></a
+                >
+              </div>
+            </form>
+          </div>
+          <div class="heading">
+            <h1>Registered Users</h1>
+            <img src="../images/formicon/User.png" alt="" />
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>FullName</th>
+                <th class="useremail">Email</th>
+                <th class="usepass">Password</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userdata_table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blogs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="./responsive.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Iceland">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/c8abb356dd.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div class="mobile-navbar" id="mobile-navbar">
+            <div class="logo">A<span>T</span>C<span>.</span></div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="mobile-menu" id="mobileMenu">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="about.html">AboutMe</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="mywork.html">MyWork</a></li>
+                <li><a href="blogs.html"><span class="active" >Blogs</span></a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+            <a href="contact.html"><button>Contact me</button></a>
+        </div>
+        <script>
+            function toggleMenu() {
+                var mobileMenu = document.getElementById("mobileMenu");
+                mobileMenu.classList.toggle("show");
+            }
+        </script>
+        <div class="body">
+            
+            <!-- blogs section -->
+            <div class="myblogtemp-div">
+                <h1>Node.Js Explained: Architecture, Benefits, And Real-World Applications</h1>
+                <img src="images/blog/node.png">
+                <a href="blogs.html">Blogs</a> > <a href="">Node.Js Explained: Architecture, Benefits, And Real-World Applications</a>
+                <h5>By Karan Chaudhary • 20 Oct, 2023</h5>
+               <p> What Is An App Development? <br>
+                Dive deep into the world of Node.js with our comprehensive guide. Discover its unique architecture,
+                benefits, and how top-tier platforms like Netflix andApps aren't just about entertainment or 
+                convenience; they have significantly altered the way businesses operate, students learn, 
+                and people connect. This interweaving of apps into our daily routines showcases the sheer 
+                power of good software, made possible by the meticulous process of app development.<br>
+
+                Types Of Applications<br>
+                1. Mobile Apps
+                The world at your fingertips, quite literally. Mobile apps are tailored for handheld devices like
+                 smartphones and tablets. They can be downloaded from app stores specific to the device's 
+                 operating system (like Google Play Store for Android or Apple App Store for iOS). Read More...
+
+
+
+                Example: Instagram, a photo-sharing platform, started as a mobile app before expanding its
+                 accessibility to web platforms.
+
+                2. Web ﻿Apps
+                Web apps are accessible through web browsers and aren't dependent on a specific operating 
+                system. They offer a universal experience across devices. The beauty of web apps is their 
+                adaptability; they can run on any device with a web browser. Read More...
+
+
+
+                Unique Case Study: Google Docs revolutionized the way we approach document editing and sharing by 
+                offering a seamless web app experience, which enables multiple users to work simultaneously.
+
+                3. Hybrid Apps
+                Blending the best of both mobile and web apps, hybrid apps can be installed on a device and run
+                 through a web browser. They're typically built using HTML, CSS, and JavaScript and then wrapped
+                  in a native container. ReadMore...
+
+
+
+                Example: Evernote, the note-taking application, is a hybrid. While it offers a native-like experience,
+                 it also runs within a browser. 
+
+                4. Progressive Web Apps (PWAs)
+                PWAs are a leap forward, combining the advantages of modern browsers with the benefits of mobile 
+                experience. They can be pinned to the home screen, send push notifications, and even work offline.
+                 Read More...
+
+
+
+                Unique Case Study: Starbucks’ PWA ensures customers can browse the menu, customize orders, and add
+                 to the cart even without an internet connection.</p>
+                 <div class="blog-footer">
+                    <div class="like">
+                        <i class="fa fa-thumbs-up"></i>
+                        <p>Like</p>
+                    </div>
+                    <div class="like">
+                        <i class="fa fa-comment"></i>
+                        <p>comment</p>
+                    </div>
+                </div>
+                     <hr>                   
+            </div>
+            <div class="comment-form">
+                <h2>Comment:</h2>
+                <form action="">
+                    <input type="text" placeholder="Names">
+                    <textarea name="" id="" cols="30" rows="5" placeholder="Your comment"></textarea>
+                </form>
+            </div>
+            <fieldset>
+                <legend>Comments:</legend>
+            <div class="comment-results">
+                <div class="comment-profile">
+                    <img src="images/profile/mucyo.png" alt="">
+                </div>
+                <div class="comment-name">pacifique mbonimana</div>
+                <div class="comment-message">that is incredible👍👍👍</div>
+                <div class="comment-like">like</div>
+                <div class="comment-reply">reply</div>
+                <div class="comment-time">07:30am</div>
+
+            </div>
+            <div class="comment-results">
+                <div class="comment-profile">
+                    <img src="images/profile/mucyo.png" alt="">
+                </div>
+                <div class="comment-name">pacifique mbonimana</div>
+                <div class="comment-message">that is incredible👍👍👍</div>
+                <div class="comment-like">like</div>
+                <div class="comment-reply">reply</div>
+                <div class="comment-time">07:30am</div>
+            </div>
+        </fieldset>
+
+
+
+        
+                <!-- contact us -->
+                <div class="contact-div">
+                    <div class="address">
+                        <i class="material-icons checked">&#xe55f;</i>
+                        <h2>ADDRESS</h2>
+                        <p>+250,KIAGALI CITY,
+                            NYARUGENGE</p>
+                    </div>
+                    <div class="verticle">
+                        <div class="val1"> </div>
+                        <div class="val"> </div>
+                        <div class="val1"> </div>
+                    </div>
+                    <div class="phone-num">
+                        <i class="material-icons checked">&#xe551;</i>
+                        <h2>PHONE NUMBER</h2>
+                        <p>+250787299001,
+                            +250729981083</p>
+                    </div>
+                    <div class="verticle">
+                        <div class="val1"> </div>
+                        <div class="val"> </div>
+                        <div class="val1"> </div>
+                    </div>
+                    <div class="email">
+                        <i class="material-icons checked">&#xe554;</i>
+                        <h2>EMAIL-ADDRESS</h2>
+                        <p>pacifiquemboni@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-body">
+                    <div class="social-footer">
+                        <img src="images/social/github.png">
+                        <img src="images/social/gmail.png">
+                        <img src="images/social/facebook.png">
+                        <img src="images/social/discord.png">
+                        <img src="images/social/linkedin.png">
+                    </div>
+                    <br>
+                    <hr>
+                    <h1>2024 pacifiquemboni. All Rights Reserved</h1>
+                </div>
+        </div>
+        <script>
+            // fixing header
+        window.onscroll = function(){myFunction()};
+        
+        var header = document.getElementById("mobile-navbar");
+        var sticky = header.offsetTop;
+        
+        function myFunction(){
+            if (window.pageYOffset > sticky){
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+        
+        </script>
+        
+    </body>
+</html>

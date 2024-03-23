@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign-Up</title>
+    <link rel="icon" type="image/png" href="images/me.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Iceland"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c8abb356dd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="validate.js" defer></script>
+    <script src="adduser.js" defer></script>
+  </head>
+  <body onload="CheckLoggedInUser()">
+    <div class="mobile-navbar" id="mobile-navbar">
+      <div class="logo">A<span>T</span>C<span>.</span></div>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="mobile-menu" id="mobileMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">AboutMe</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="mywork.html">MyWork</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li id="login"><a href="login.html">Login</a></li>
+        <div
+          id="userdashboard"
+          style="display: none; color: #fea609"
+          onclick="logout()"
+        >
+          Logout
+          <img
+            width="10"
+            height="10"
+            src="https://img.icons8.com/ios-filled/50/FA5252/logout-rounded.png"
+            alt="logout-rounded"
+          />
+        </div>
+      </ul>
+      <div id="dashboard" style="display: none" onclick="navigateToDashboard()">
+        Admin Dashboard
+      </div>
+      <h1 class="active">Sign-Up</h1>
+    </div>
+    <script src="login.js"></script>
+    <script>
+      function toggleMenu() {
+        var mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("show");
+      }
+    </script>
+    <div class="body">
+      <div class="contact-page">
+        <div class="contact-left sign-up-bg">
+          <img src="images/profile/signin.jpg" alt="" />
+        </div>
+        <div class="contact-right">
+          <div class="login-form sign-up-Form">
+            <form
+              id="sign-upForm"
+              oninput="return validateSignForm() && validateSignForm()"
+            >
+            <div id="toastNotification" class="toast hidden"></div>
+              <input
+                type="text"
+                placeholder="Your names"
+                id="signUserName"
+                name="name"
+              /><br />
+              <div id="signUserNameError"></div>
+              <input
+                type="text"
+                placeholder="E-mail"
+                id="signEmail"
+                name="email"
+                oninput="firstPassValidate()"
+              /><br />
+              <div id="emailError"></div>
+              <input
+                type="text"
+                placeholder="password"
+                id="password"
+                oninput="firstPassValidate()"
+              />
+              <div id="signPasswordError"></div>
+              <div id="upper" class="rederror"></div>
+              <div id="upperyes" class="greenerror"></div>
+              <div id="lower" class="rederror"></div>
+              <div id="loweryes" class="greenerror"></div>
+              <div id="specialchar" class="rederror"></div>
+              <div id="specialcharyes" class="greenerror"></div>
+              <div id="number" class="rederror"></div>
+              <div id="numberyes" class="greenerror"></div>
+              <div id="space" class="rederror"></div>
+              <div id="spaceyes" class="greenerror"></div>
+              <input
+                type="text"
+                placeholder="confirm password"
+                id="password2"
+                name="password2"
+                oninput="firstPassValidate()"
+              />
+              <div id="signConfirmPasswordError"></div>
+
+              <div class="login-btn">
+                <a href="#"
+                  ><button
+                    type="button"
+                    onclick="validateSignForm() && submitForm() "
+                  >
+                    Sign-Up
+                  </button></a
+                >
+              </div>
+            </form>
+            <script>
+              function submitForm() {
+                const names = document.getElementById("signUserName").value;
+                const email = document.getElementById("signEmail").value;
+                const password = document.getElementById("password").value;
+                const confpass = document.getElementById("password2").value;
+
+                 showToast('Registering .....')
+                // Example: Sending data to the server using Fetch API
+                fetch("https://pacifique-mybrand-endpoints.onrender.com/user", {
+                  //https://pacifique-mybrand-endpoints.onrender.com
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ names, email, password, confpass }),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log("Data sent successfully:", data);
+                    // You can add further actions or UI updates here
+                    showToast("you have successfullu registered to our system");
+                    resetForm();
+                    setTimeout(()=>{
+                      window.location.href='login.html'
+                    },1000)
+                  })
+                  .catch((error) => {
+                    console.error("Error sending data:", error);
+                  });
+              }
+              function showToast(message, type = "success", duration = 3000) {
+                  const toast = document.getElementById("toastNotification");
+                  toast.textContent = message;
+                  toast.classList.add("show", type); // Add 'type' class for styling
+                  setTimeout(() => {
+                    toast.classList.remove("show", type);
+                  }, duration);
+                }
+                function resetForm() {
+                  document.getElementById("sign-upForm").reset(); // Reset the form
+                }
+            </script>
+            <script src="https://smtpjs.com/v3/smtp.js"></script>
+            <script src="script.js"></script>
+          </div>
+        </div>
+      </div>
+
+      <!-- contact us -->
+      <div class="contact-div">
+        <div class="address">
+          <i class="material-icons checked">&#xe55f;</i>
+          <h2>ADDRESS</h2>
+          <p>+250,KIAGALI CITY, NYARUGENGE</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="phone-num">
+          <i class="material-icons checked">&#xe551;</i>
+          <h2>PHONE NUMBER</h2>
+          <p>+250787299001, +250729981083</p>
+        </div>
+        <div class="verticle">
+          <div class="val1"></div>
+          <div class="val"></div>
+          <div class="val1"></div>
+        </div>
+        <div class="email">
+          <i class="material-icons checked">&#xe554;</i>
+          <h2>EMAIL-ADDRESS</h2>
+          <p>pacifiquemboni@gmail.com</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-body">
+        <div class="social-footer">
+          <img src="images/social/github.png" />
+          <img src="images/social/gmail.png" />
+          <img src="images/social/facebook.png" />
+          <img src="images/social/discord.png" />
+          <img src="images/social/linkedin.png" />
+        </div>
+        <br />
+        <hr />
+        <h1>2024 pacifiquemboni. All Rights Reserved</h1>
+        <!-- <a href="board.html">dash</a> -->
+      </div>
+    </div>
+    <script>
+      // fixing header
+      window.onscroll = function () {
+        myFunction();
+      };
+
+      var header = document.getElementById("mobile-navbar");
+      var navbar = document.getElementById("mobilemenu");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+  </body>
+</html>
