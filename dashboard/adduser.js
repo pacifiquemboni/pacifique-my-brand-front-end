@@ -111,7 +111,7 @@ function submitForm() {
   const confpass = document.getElementById('password2').value;
 
   // Example: Sending data to the server using Fetch API
-  fetch("http://127.0.0.1:5000/user", {
+  fetch("https://pacifique-mybrand-endpoints.onrender.com/user", {
     //https://pacifique-mybrand-endpoints.onrender.com
     method: "POST",
     headers: {

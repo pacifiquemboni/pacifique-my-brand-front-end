@@ -46,8 +46,10 @@ const createMessageElement = (message) => {
   <td class="tdemail">${message.email} </td>
   <td class="tdmessage">${message.message} </td>
   <td class="action-buttons">
-          <img src="../images/formicon/reply.png" alt="" onclick="replyToUser('${message.email}')">
-          <img src="../images/formicon/trash.png" alt="" onclick="deleteMessage('${message._id}')">
+        <img width="20" height="20" src="https://img.icons8.com/ios/50/FA5252/trash--v1.png" alt="trash--v1" onclick="deleteMessage('${message._id}')"/>
+          
+          <img width="20" height="20" src="https://img.icons8.com/pulsar-line/48/40C057/reply.png" alt="reply" onclick="replyToUser('${message.email}')"/>
+          
   </td>
   `;
   return messageElement;

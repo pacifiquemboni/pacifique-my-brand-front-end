@@ -12,8 +12,10 @@
     />
     <title>Statistics</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="validate.js"></script>
-  <body onload="runAnimations()">
+  
+    <script src="statistics.js"></script>
+  <body onload="fetchAllUsers() , fetchAllBlogs() , fetchAllComments()" >
+    <!-- onload="" -->
     <header>
       <input type="checkbox" name="" id="check" />
       <label for="check">
@@ -111,12 +113,7 @@
         window.location.href = "../login.html"; // Change the URL to your login page
       };
 
-      // Add event listener to the logout button or link
-      document
-        .getElementById("logout-button")
-        .addEventListener("click", () => {
-          logout(); // Call the logout function when the button or link is clicked
-        });
+     
     </script>
 
     <div id="section">
@@ -135,8 +132,8 @@
                 </div>
               
               <div>
-                <h1>Clients</h1>
-                <h2><span class="countup">200</span>+</h2>
+                <h1>Users:</h1>
+                <h1><span class="countup" id="allusers"></span></h1>
               </div>
               
             </div>
@@ -146,8 +143,8 @@
                 </div>
               
               <div>
-                <h1>Blogs</h1>
-                <h2><span class="countup">100</span>+</h2>
+                <h1>Blogs:</h1>
+                <h1><span class="countup" id="allblogs"></span></h1>
               </div>
               
             </div>
@@ -157,8 +154,8 @@
                 </div>
               
               <div>
-                <h1>Reactions</h1>
-              <h2><span class="countup">500</span>+</h2>
+                <h1>Reactions:</h1>
+              <h1><span class="countup" id="allcomments"></span></h1>
               </div>
               
             </div>
@@ -195,38 +192,5 @@
       </div>
     </div>
   </body>
-  <script>
-    function handleFileChange() {
-      var fileInput = document.getElementById("imageInput");
-      var previewImage = document.getElementById("previewImage");
-
-      if (fileInput && fileInput.files && fileInput.files.length > 0) {
-        var selectedFile = fileInput.files[0];
-
-        // Read the file as a Data URL (Base64 encoded)
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          // Display the preview image
-          previewImage.src = e.target.result;
-          previewImage.style.display = "block";
-
-          // Save the Base64 data to localStorage
-          localStorage.setItem("imageData", e.target.result);
-        };
-
-        reader.readAsDataURL(selectedFile);
-      } else {
-        console.log("No file selected");
-      }
-    }
-
-    // You can load the image data from localStorage on page load if needed
-    var imageDataFromStorage = localStorage.getItem("imageData");
-    if (imageDataFromStorage) {
-      var previewImage = document.getElementById("previewImage");
-      previewImage.src = imageDataFromStorage;
-      previewImage.style.display = "block";
-    }
-  </script>
+ 
 </html>
