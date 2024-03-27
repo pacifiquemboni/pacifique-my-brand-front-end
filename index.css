@@ -1333,7 +1333,8 @@ h3 {
 .comment-message {
     grid-area: message;
     font-family: 'Courier New', Courier, monospace;
-
+    word-wrap: break-word;
+    width: 45%;
 }
 
 .comment-like {

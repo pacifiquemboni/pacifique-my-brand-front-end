@@ -192,13 +192,16 @@ const createProjectElement2 = (project) => {
                 </p>
                 <p class="card-time">Started:${project.started}</p>
                 <p class="card-time">Ended:${project.ended}</p>
-                <a href="#" class="button">send us messagewwww</a>
+                <a href="#" class="button" onclick="navigateToMessage()">send us message</a>
               </div>
  
 
   `;
   return projectElement;
 };
+const navigateToMessage = ()=>{
+  window.location.href='contact.html'
+}
 // function to display projects in dashboard
 const displayProjects2 = () => {
   let projectsList = document.getElementById("myworkprojects-cards");

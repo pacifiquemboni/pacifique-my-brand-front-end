@@ -126,6 +126,7 @@
 
                 const responseData = await response.json();
                 console.log(responseData.message); // Log the success message from the server
+                location.reload()
               } catch (error) {
                 console.error("Error updating like status:", error);
                 // Handle errors here
